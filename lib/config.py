@@ -30,11 +30,11 @@ class Database:
         
 
         sql_borrowed="""
-        CREATE TABLE IF NOT EXISTS stadiums(
-        stadium_id INTEGER PRIMARY KEY,
-        stadium_name varchar(40),
-        location varchar(40),
-        FOREIGN KEY(location) REFERENCES locations(location_name)
+        CREATE TABLE IF NOT EXISTS borrowed(
+        title varchar(40),
+        author varchar(40),
+        borrower varchar(40),
+        deadline varchar(40)
         )
         """
         CURSOR.execute(sql_borrowed)
@@ -43,21 +43,25 @@ class Database:
         CONN.commit()
 
     @classmethod
-    def drop_tables(cls):
-        sql_books="""
-        DROP TABLE IF EXISTS books
-        """
-        CURSOR.execute(sql_books)
+#    def drop_tables(cls):
+#        sql_books="""
+#       DROP TABLE IF EXISTS books
+#        """
+#       CURSOR.execute(sql_books)
         
-        sql_users="""
-        DROP TABLE IF EXISTS users
-        """
-        CURSOR.execute(sql_users)
+#        sql_users="""
+#        DROP TABLE IF EXISTS users
+#        """
+#        CURSOR.execute(sql_users)
         
-        sql_borrowed="""
-        DROP TABLE IF EXISTS borrowed
-        """
-        CURSOR.execute(sql_borrowed)
-           
+#        sql_borrowed="""
+#        DROP TABLE IF EXISTS borrowed
+#        """
+#        CURSOR.execute(sql_borrowed)
+
+    def drop_stadiums_table(cls):
+        sql = "DROP TABLE IF EXISTS stadiums"
+        CURSOR.execute(sql)
+        CONN.commit()   
         
         CONN.commit()
