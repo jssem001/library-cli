@@ -1,38 +1,35 @@
 import sqlite3
-CONN = sqlite3.connect('league.db')
+CONN = sqlite3.connect('library.db')
 CURSOR = CONN.cursor()
 
 class Database:
     @classmethod
     def create_tables(cls):
-        sql_teams="""
-        CREATE TABLE IF NOT EXISTS teams(
-        team_id INTEGER PRIMARY KEY,
-        team_name varchar(40),
-        stadium varchar(40), 
-        FOREIGN KEY(stadium) REFERENCES stadiums(stadium_name)
+        sql_books="""
+        CREATE TABLE IF NOT EXISTS books(
+        isbn INTEGER PRIMARY KEY,
+        book_title varchar(40),
+        book_author varchar(40), 
+        FOREIGN KEY(book_title) REFERENCES borrowed(title)
         )
         """
-        CURSOR.execute(sql_teams)
+        CURSOR.execute(sql_books)
         CONN.commit()
 
-        sql_games="""
-        CREATE TABLE IF NOT EXISTS games(
-        game_id INTEGER PRIMARY KEY,
-        home_team varchar(40),
-        away_team varchar(40),
-        home_score INTEGER,
-        away_score INTEGER,
-        stadium varchar(40),
-        FOREIGN KEY(home_team) REFERENCES teams(team_name)
-        FOREIGN KEY(away_team) REFERENCES teams(team_name)
-        FOREIGN KEY(stadium) REFERENCES stadiums(stadium_name)
+        sql_users="""
+        CREATE TABLE IF NOT EXISTS users(
+        user_id INTEGER PRIMARY KEY,
+        first_name varchar(40),
+        last_name varchar(40),
+        username varchar(40),
+        passcode INTEGER,
+        FOREIGN KEY(username) REFERENCES borrowed(borrower)
         )
         """
-        CURSOR.execute(sql_games)
+        CURSOR.execute(sql_users)
         
 
-        sql_stadiums="""
+        sql_borrowed="""
         CREATE TABLE IF NOT EXISTS stadiums(
         stadium_id INTEGER PRIMARY KEY,
         stadium_name varchar(40),
@@ -40,39 +37,27 @@ class Database:
         FOREIGN KEY(location) REFERENCES locations(location_name)
         )
         """
-        CURSOR.execute(sql_stadiums)
+        CURSOR.execute(sql_borrowed)
         
-
-        sql_locations="""
-        CREATE TABLE IF NOT EXISTS locations(
-        location_id INTEGER PRIMARY KEY,
-        location_name varchar(40)
-        )
-        """
-        CURSOR.execute(sql_locations)
         
         CONN.commit()
 
     @classmethod
     def drop_tables(cls):
-        sql_teams="""
-        DROP TABLE IF EXISTS teams
+        sql_books="""
+        DROP TABLE IF EXISTS books
         """
-        CURSOR.execute(sql_teams)
+        CURSOR.execute(sql_books)
         
-        sql_games="""
-        DROP TABLE IF EXISTS games
+        sql_users="""
+        DROP TABLE IF EXISTS users
         """
-        CURSOR.execute(sql_games)
+        CURSOR.execute(sql_users)
         
-        sql_stadiums="""
-        DROP TABLE IF EXISTS stadiums
+        sql_borrowed="""
+        DROP TABLE IF EXISTS borrowed
         """
-        CURSOR.execute(sql_stadiums)
-        
-        sql_locations="""
-        DROP TABLE IF EXISTS locations
-        """
-        CURSOR.execute(sql_locations)
+        CURSOR.execute(sql_borrowed)
+           
         
         CONN.commit()

@@ -3,7 +3,7 @@
 from config import CONN, CURSOR
 from config import Database
 
-import ipdb
-ipdb.set_trace()
+import pdb
+pdb.set_trace()
 
 

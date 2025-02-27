@@ -3,6 +3,10 @@ from models.teams import Teams
 from models.locations import Locations
 from models.stadiums import Stadiums
 from models.games import Games
+from models.books import Books
+from config import Database
+
+Database.create_tables()
 
 def main():
     while True:
@@ -18,6 +22,32 @@ def main():
             stadium_operations()
         elif choice == "4":
             game_operations()
+        elif choice == "5":
+            book_operations()
+        else:
+            print("Invalid choice")
+
+def book_operations():
+    while True:
+        print("\n***Book Management***")
+        print("\nPlease select an option:")
+        print("1. Show all books")
+        print("2. Add a new book")
+        print("3. Return to main menu")
+        print("00. Exit the program")
+
+        choice = input("> ")
+        if choice == "00":
+            exit_program()
+        elif choice == "1":
+            print(Books.show_all_books())
+        elif choice == "2":
+            book_title = input("Enter book title: ")
+            book_author = input("Enter book author: ")
+            Books.register_book(book_title, book_author)
+            print(f"{book_title} has been registered successfully!")
+        elif choice == "3":
+            return menu()
         else:
             print("Invalid choice")
 
@@ -187,6 +217,7 @@ def menu():
     print("2. Location Management")
     print("3. Stadium Management")
     print("4. Game Management")
+    print("5. Book Management")
     print("00. Exit the program")
 
 def exit_program():
