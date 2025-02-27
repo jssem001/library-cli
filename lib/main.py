@@ -5,10 +5,13 @@
 # from models.games import Games
 from models.books import Books
 from models.users import Users
+from models.borrowed import Borrowed
 from config import Database
 
-# Database.create_tables()
-# Database.drop_stadiums_table()
+#Database.drop_tables()
+Database.create_tables()
+
+
 
 def main():
     while True:
@@ -37,7 +40,10 @@ def book_operations():
         print("\nPlease select an option:")
         print("1. Show all books")
         print("2. Add a new book")
-        print("3. Return to main menu")
+        print("3. Borrow a book")
+        print("4. Return a book")
+        print("5. display borrowed books")
+        print("6. Return to main menu")
         print("00. Exit the program")
 
         choice = input("> ")
@@ -51,6 +57,21 @@ def book_operations():
             Books.register_book(book_title, book_author)
             print(f"{book_title} has been registered successfully!")
         elif choice == "3":
+            title = input("Enter book title: ")
+            author = input("Enter book author: ")
+            borrower = input("Enter username: ")
+            Borrowed.borrow_book(title, author, borrower)
+            print(f"{title} by {author} has been borrowed by {borrower}")
+        elif choice == "4":
+            title = input("Enter book title: ")
+            author = input("Enter book author: ")
+            borrower = input("Enter username: ")
+            Borrowed.return_book(title, author, borrower)
+            print(f"{title} by {author} has been returned by {borrower}")
+        elif choice == "5":
+            print("\n***Borrowed Books***")
+            print(Borrowed.all_borrowed_books())
+        elif choice == "6":
             return menu()
         else:
             print("Invalid choice")
@@ -70,7 +91,22 @@ def user_operations():
         elif choice == "1":
             username = input("Enter username: ")
             passcode = input("Enter passcode: ")
-            print(Users.show_user_profile(username, passcode))
+            print("\nThank you for logging in!")
+            print(f"\n {Users.show_user_profile(username, passcode)}")
+            print("\n1. Update your profile")
+            print("2. Return to main menu")
+            choice = input("> ")
+            if choice == "1":
+                first_name = input("update your first name: ")
+                last_name = input("update your last name: ")
+                username = input("update username: ")
+                passcode = input("update 6 digit passcode: ")
+                if len(passcode) != 6:
+                    print("Passcode must be 6 digits.")
+                    break
+                else:
+                    Users.update_user_profile(first_name, last_name, username, passcode)
+                    print(f"Your profile has been updated successfully!")
         elif choice == "2":
             first_name = input("Enter your first name: ")
             last_name = input("Enter your last name: ")
