@@ -25,5 +25,9 @@ class Users:
         WHERE username = ? AND passcode = ?
         """
         CURSOR.execute(sql,(username, passcode))
-        profile = CURSOR.fetchall()
-        return profile
+        profile = CURSOR.fetchone()
+
+        if profile is None:
+            return "Incorrect username or passcode. Please try again."
+        else:
+            return profile

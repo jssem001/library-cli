@@ -17,11 +17,15 @@ def main():
         if choice == "00":
             exit_program()
         elif choice == "1":
-            book_operations()
+            # book_operations()
+            catalog()
         elif choice == "2":
             user_operations()
         else:
             print("Invalid choice")
+
+def catalog():
+    print(Books.show_all_books())
 
 def book_operations():
     while True:
@@ -80,27 +84,38 @@ def user_operations():
         elif choice == "1":
             username = input("Enter username: ")
             passcode = input("Enter passcode: ")
-            print("\nThank you for logging in!")
+            # print("\nThank you for logging in!")
             print(f"\n {Users.show_user_profile(username, passcode)}")
-            print("\n1. Update your profile")
-            print("2. View your books")
-            print("3. Return to main menu")
-            choice = input("> ")
-            if choice == "1":
-                first_name = input("update your first name: ")
-                last_name = input("update your last name: ")
-                username = input("update username: ")
-                passcode = input("update 6 digit passcode: ")
-                if len(passcode) != 6:
-                    print("Passcode must be 6 digits.")
-                    break
-                else:
-                    Users.update_user_profile(first_name, last_name, username, passcode)
-                    print(f"Your profile has been updated successfully!")
+            if Users.show_user_profile(username, passcode) == "Incorrect username or passcode. Please try again.":
+                break
+            else:
+                print("\nThank you for logging in!")
+                print("\n1. Update your profile")
+                print("2. View your books")
+                print("3. Book Management")
+                print("4. Return to main menu")
+                choice = input("> ")
+                if choice == "1":
+                    first_name = input("update your first name: ")
+                    last_name = input("update your last name: ")
+                    username = input("update username: ")
+                    passcode = input("update 6 digit passcode: ")
+                    if len(passcode) != 6:
+                        print("Passcode must be 6 digits.")
+                        break
+                    else:
+                        Users.update_user_profile(first_name, last_name, username, passcode)
+                        print(f"Your profile has been updated successfully!")
             
-            if choice == "2":
-                print("\nBooks you are borrowing:")
-                print(f"\n{Borrowed.user_books(username)}")
+                if choice == "2":
+                    print("\nBooks you are borrowing:")
+                    print(f"\n{Borrowed.user_books(username)}")
+                elif choice == "3":
+                    book_operations()
+                elif choice == "4":
+                    return menu()
+                else:
+                    print("Invalid choice")
         elif choice == "2":
             first_name = input("Enter your first name: ")
             last_name = input("Enter your last name: ")
@@ -120,7 +135,8 @@ def user_operations():
 def menu():
     print("\n***Welcome to the Library!***")
     print("\nPlease select an option:")
-    print("1. Book Management")
+    # print("1. Book Management")
+    print("1. Books Selection")
     print("2. User Profile")
     print("00. Exit the program")
 
