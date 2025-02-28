@@ -83,7 +83,8 @@ def user_operations():
             print("\nThank you for logging in!")
             print(f"\n {Users.show_user_profile(username, passcode)}")
             print("\n1. Update your profile")
-            print("2. Return to main menu")
+            print("2. View your books")
+            print("3. Return to main menu")
             choice = input("> ")
             if choice == "1":
                 first_name = input("update your first name: ")
@@ -96,6 +97,10 @@ def user_operations():
                 else:
                     Users.update_user_profile(first_name, last_name, username, passcode)
                     print(f"Your profile has been updated successfully!")
+            
+            if choice == "2":
+                print("\nBooks you are borrowing:")
+                print(f"\n{Borrowed.user_books(username)}")
         elif choice == "2":
             first_name = input("Enter your first name: ")
             last_name = input("Enter your last name: ")

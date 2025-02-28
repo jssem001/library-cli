@@ -53,3 +53,11 @@ class Borrowed:
         CURSOR.execute(sql)
         books = CURSOR.fetchall()
         return books
+    
+    #display books borrowed by a user
+    @classmethod
+    def user_books(cls, username):
+        sql = "SELECT * FROM borrowed WHERE borrower = ?"
+        CURSOR.execute(sql , (username,))
+        books = CURSOR.fetchall()
+        return books
