@@ -50,13 +50,13 @@ def book_operations():
             author = input("Enter book author: ")
             borrower = input("Enter username: ")
             Borrowed.borrow_book(title, author, borrower)
-            print(f"{title} by {author} has been borrowed by {borrower}")
+            # print(f"{title} by {author} has been borrowed by {borrower}")
         elif choice == "4":
             title = input("Enter book title: ")
             author = input("Enter book author: ")
             borrower = input("Enter username: ")
             Borrowed.return_book(title, author, borrower)
-            print(f"{title} by {author} has been returned by {borrower}")
+            #print(f"{title} by {author} has been returned by {borrower}")
         elif choice == "5":
             print("\n***Borrowed Books***")
             print(Borrowed.all_borrowed_books())

@@ -10,6 +10,7 @@ class Database:
         isbn INTEGER PRIMARY KEY,
         book_title varchar(40),
         book_author varchar(40), 
+        availability INTEGER CHECK(availability IN (0, 1)),
         FOREIGN KEY(book_title) REFERENCES borrowed(title)
         )
         """
@@ -28,7 +29,6 @@ class Database:
         """
         CURSOR.execute(sql_users)
         
-
         sql_borrowed="""
         CREATE TABLE IF NOT EXISTS borrowed(
         title varchar(40),
@@ -38,7 +38,6 @@ class Database:
         )
         """
         CURSOR.execute(sql_borrowed)
-        
         
         CONN.commit()
 
