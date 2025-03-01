@@ -39,7 +39,7 @@ CURSOR.executemany("INSERT INTO books (isbn, book_title, book_author, availabili
     (2, "chasers", "jojo clarke", 0),
     (3, "Cold Kitchen", "Caroline Eden", 1),
     (4, "Love and Need", "Adam Plunkett", 1),
-    (5, "Code Noir", "Canisia Lubrin", 1)
+    (5, "Code Noir", "Canisia Lubrin", 1),
     (6, "Lorne", "Susan Morrison", 1),
     (7, "Helen of Troy", "Maria Zoccola", 1),
     (8, "After Lives", "Megan Marshall", 1),
