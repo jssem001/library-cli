@@ -5,14 +5,6 @@ class Books:
     #register a new book
     @classmethod
     def register_book(cls, book_title, book_author):
-        # sql = "ALTER TABLE books ADD COLUMN availability INTEGER DEFAULT 1"
-        # CURSOR.execute(sql)
-        # CONN.commit()
-
-        # sql = "UPDATE books SET availability = 1"
-        # CURSOR.execute(sql)
-        # CONN.commit()
-        
         sql = "INSERT INTO books (book_title, book_author, availability) VALUES (?,?, 1)"
         CURSOR.execute(sql, (book_title, book_author))
         CONN.commit()
@@ -24,3 +16,6 @@ class Books:
         CURSOR.execute(sql)
         books = CURSOR.fetchall()
         return books
+    
+
+#Books in this library were inspired by the following article: https://www.newyorker.com/best-books-2025
