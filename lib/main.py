@@ -17,7 +17,6 @@ def main():
         if choice == "00":
             exit_program()
         elif choice == "1":
-            # book_operations()
             catalog()
         elif choice == "2":
             user_operations()
@@ -25,7 +24,8 @@ def main():
             print("Invalid choice")
 
 def catalog():
-    print(Books.show_all_books())
+    print("\n(ISBN, Title, Author, Availability)")
+    print(f"\n{Books.show_all_books()}")
 
 def book_operations():
     while True:
@@ -43,7 +43,8 @@ def book_operations():
         if choice == "00":
             exit_program()
         elif choice == "1":
-            print(Books.show_all_books())
+            print("\n(ISBN, Title, Author, Availability)")
+            print(f"\n{Books.show_all_books()}")
         elif choice == "2":
             book_title = input("Enter book title: ")
             book_author = input("Enter book author: ")
@@ -54,16 +55,15 @@ def book_operations():
             author = input("Enter book author: ")
             borrower = input("Enter username: ")
             Borrowed.borrow_book(title, author, borrower)
-            # print(f"{title} by {author} has been borrowed by {borrower}")
         elif choice == "4":
             title = input("Enter book title: ")
             author = input("Enter book author: ")
             borrower = input("Enter username: ")
             Borrowed.return_book(title, author, borrower)
-            #print(f"{title} by {author} has been returned by {borrower}")
         elif choice == "5":
             print("\n***Borrowed Books***")
-            print(Borrowed.all_borrowed_books())
+            print("\n(Title, Author, Borrower, Return Date)")
+            print(f"\n{Borrowed.all_borrowed_books()}")
         elif choice == "6":
             return menu()
         else:
@@ -84,7 +84,6 @@ def user_operations():
         elif choice == "1":
             username = input("Enter username: ")
             passcode = input("Enter passcode: ")
-            # print("\nThank you for logging in!")
             print(f"\n {Users.show_user_profile(username, passcode)}")
             if Users.show_user_profile(username, passcode) == "Incorrect username or passcode. Please try again.":
                 break
@@ -109,6 +108,7 @@ def user_operations():
             
                 if choice == "2":
                     print("\nBooks you are borrowing:")
+                    print("\n(Title, Author, Username, Return Date)")
                     print(f"\n{Borrowed.user_books(username)}")
                 elif choice == "3":
                     book_operations()
@@ -135,7 +135,6 @@ def user_operations():
 def menu():
     print("\n***Welcome to the Library!***")
     print("\nPlease select an option:")
-    # print("1. Book Management")
     print("1. Books Selection")
     print("2. User Profile")
     print("00. Exit the program")

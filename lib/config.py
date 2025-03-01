@@ -43,15 +43,15 @@ class Database:
 
     @classmethod
     def drop_tables(cls):
-    #    sql_books="""
-    #    DROP TABLE IF EXISTS books
-    #    """
-    #    CURSOR.execute(sql_books)
+       sql_books="""
+       DROP TABLE IF EXISTS books
+       """
+       CURSOR.execute(sql_books)
         
-    #    sql_users="""
-    #    DROP TABLE IF EXISTS users
-    #    """
-    #    CURSOR.execute(sql_users)
+       sql_users="""
+       DROP TABLE IF EXISTS users
+       """
+       CURSOR.execute(sql_users)
         
        sql_borrowed="""
        DROP TABLE IF EXISTS borrowed
