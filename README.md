@@ -17,7 +17,7 @@ this is a simple book borrowing system where borrowing record is created when a 
 -Return a book
 
 ## To start the program
-1. clone this app to a local folder of your choice using: 
+1. clone this app to a local folder of your choice using: git clone git@github.com:jssem001/library-cli.git
 2. Open a terminal and run: python seed_library.py
 3. Start the program: python lib/main.py
 
